@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Kỷ Niệm Lớp Học - Hành Trình Thanh Xuân ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --secondary: #06b6d4;
+            --accent: #f43f5e;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Thanh điều hướng tối giản */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.7rem;
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+
+        /* Banner chính */
+        header {
+            height: 85vh;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.85), rgba(6, 182, 212, 0.85)), 
+                        url('anh5.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .btn-main {
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.35);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-3px);
+            background-color: #e11d48;
+        }
+
+        /* Cấu trúc phần chung */
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* Khung Giáo viên chủ nhiệm */
+        .teacher-box {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            max-width: 420px;
+            margin: 0 auto 40px auto;
+            padding: 22px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.08);
+            border: 2px dashed var(--primary-light);
+        }
+
+        .teacher-box h3 {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .teacher-box p {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Danh sách lớp học dạng thẻ thanh lịch */
+        .roster-container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+            border: 1px solid #f1f5f9;
+        }
+
+        .roster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+            list-style: none;
+        }
+
+        .roster-item {
+            background: #fafafa;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.93rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #f1f5f9;
+            transition: all 0.2s ease;
+        }
+
+        .roster-item:hover {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+            transform: translateX(3px);
+        }
+
+        .roster-index {
+            background: #e0e7ff;
+            color: var(--primary);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            min-width: 32px;
+            text-align: center;
+        }
+
+        .roster-name {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* Lưới trưng bày ảnh kỷ yếu */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .memory-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 1px solid #f1f5f9;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-img-wrap {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .memory-card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 22px;
+        }
+
+        .card-tag {
+            display: inline-block;
+            background: #e0e7ff;
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .card-content h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Hộp Phóng To Ảnh (Lightbox) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .lightbox img {
+            max-width: 85%;
+            max-height: 75vh;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(255,255,255,0.15);
+        }
+
+        .lightbox-text {
+            color: white;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Chân trang */
+        footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.9rem;
+        }
+
+        footer span {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.3rem; }
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Thanh Điều Hướng -->
+    <nav>
+        <div class="nav-logo">🌸 Hành Trình Lớp Học</div>
+        <ul class="nav-menu">
+            <li><a href="#home">Trang Chủ</a></li>
+            <li><a href="#roster">Danh Sách Lớp</a></li>
+            <li><a href="#gallery">Khoảnh Khắc</a></li>
+        </ul>
+    </nav>
+
+    <!-- Banner -->
+    <header id="home">
+        <h1>Kỷ Niệm Lớp Học Đáng Nhớ</h1>
+        <p>Lưu giữ từng cột mốc tuyệt vời, những nụ cười và dấu ấn không thể quên trong suốt chặng đường qua.</p>
+        <a href="#gallery" class="btn-main">Khám Phá Album</a>
+    </header>
+
+    <!-- Danh Sách Lớp & GVCN -->
+    <section id="roster">
+        <div class="section-title">
+            <h2>✨ Thành Viên Tập Thể Lớp ✨</h2>
+            <p>Dưới sự dìu dắt tận tình của giáo viên chủ nhiệm</p>
+        </div>
+
+        <div class="teacher-box">
+            <h3>👩‍🏫 Giáo Viên Chủ Nhiệm</h3>
+            <p>Cô Hồ Thị Hồng Thủy</p>
+        </div>
+
+        <div class="roster-container">
+            <ul class="roster-grid">
+                <li class="roster-item"><span class="roster-index">01</span><span class="roster-name">Lê Quỳnh Anh</span></li>
+                <li class="roster-item"><span class="roster-index">02</span><span class="roster-name">Nguyễn Bùi Trâm Anh</span></li>
+                <li class="roster-item"><span class="roster-index">03</span><span class="roster-name">Nguyễn Ngọc Ánh</span></li>
+                <li class="roster-item"><span class="roster-index">04</span><span class="roster-name">Trương Quốc Bảo</span></li>
+                <li class="roster-item"><span class="roster-index">05</span><span class="roster-name">Trương Bảo Châu</span></li>
+                <li class="roster-item"><span class="roster-index">06</span><span class="roster-name">Dương Minh Cuông</span></li>
+                <li class="roster-item"><span class="roster-index">07</span><span class="roster-name">Nguyễn Thái Duy</span></li>
+                <li class="roster-item"><span class="roster-index">08</span><span class="roster-name">Nguyễn Ý Duyên</span></li>
+                <li class="roster-item"><span class="roster-index">09</span><span class="roster-name">Nguyễn Gia Đạt</span></li>
+                <li class="roster-item"><span class="roster-index">10</span><span class="roster-name">Nguyễn Hưng Điền</span></li>
+                <li class="roster-item"><span class="roster-index">11</span><span class="roster-name">Nguyễn Gia Hân</span></li>
+                <li class="roster-item"><span class="roster-index">12</span><span class="roster-name">Nguyễn Minh Khang</span></li>
+                <li class="roster-item"><span class="roster-index">13</span><span class="roster-name">Lê Mỹ Linh</span></li>
+                <li class="roster-item"><span class="roster-index">14</span><span class="roster-name">Nguyễn Thi Khánh Ly</span></li>
+                <li class="roster-item"><span class="roster-index">15</span><span class="roster-name">Đỗ Trần Hải Minh</span></li>
+                <li class="roster-item"><span class="roster-index">16</span><span class="roster-name">Lê Phúc Minh</span></li>
+                <li class="roster-item"><span class="roster-index">17</span><span class="roster-name">Nguyễn Quốc Minh</span></li>
+                <li class="roster-item"><span class="roster-index">18</span><span class="roster-name">Phan Kim Mỹ</span></li>
+                <li class="roster-item"><span class="roster-index">19</span><span class="roster-name">Lâm Nguyễn Kim Ngân</span></li>
+                <li class="roster-item"><span class="roster-index">20</span><span class="roster-name">Lê Thanh Khánh Ngân</span></li>
+                <li class="roster-item"><span class="roster-index">21</span><span class="roster-name">Nguyễn Huỳnh Kim Ngân</span></li>
+                <li class="roster-item"><span class="roster-index">22</span><span class="roster-name">Huỳnh Duy Bảo Nhi</span></li>
+                <li class="roster-item"><span class="roster-index">23</span><span class="roster-name">Mã Hoành Phát</span></li>
+                <li class="roster-item"><span class="roster-index">24</span><span class="roster-name">Nguyễn Hoàng Mỹ Phúc</span></li>
+                <li class="roster-item"><span class="roster-index">25</span><span class="roster-name">Nguyễn Thành Phước</span></li>
+                <li class="roster-item"><span class="roster-index">26</span><span class="roster-name">Nguyễn Hoàng Lan Phương</span></li>
+                <li class="roster-item"><span class="roster-index">27</span><span class="roster-name">Nguyễn Thị Mỹ Quyên</span></li>
+                <li class="roster-item"><span class="roster-index">28</span><span class="roster-name">Huỳnh Hoài Sang</span></li>
+                <li class="roster-item"><span class="roster-index">29</span><span class="roster-name">Trịnh Kiến Thành</span></li>
+                <li class="roster-item"><span class="roster-index">30</span><span class="roster-name">Phan Khắc An Thịnh</span></li>
+                <li class="roster-item"><span class="roster-index">31</span><span class="roster-name">Trương Anh Thơ</span></li>
+                <li class="roster-item"><span class="roster-index">32</span><span class="roster-name">Trần Hạ Minh Thư</span></li>
+                <li class="roster-item"><span class="roster-index">33</span><span class="roster-name">Hồ Nguyễn Thiên Trâm</span></li>
+                <li class="roster-item"><span class="roster-index">34</span><span class="roster-name">Phan Trần Bích Trân</span></li>
+                <li class="roster-item"><span class="roster-index">35</span><span class="roster-name">Nguyễn Gia Tuệ</span></li>
+                <li class="roster-item"><span class="roster-index">36</span><span class="roster-name">Huỳnh Nguyễn Thảo Vy</span></li>
+                <li class="roster-item"><span class="roster-index">37</span><span class="roster-name">Huỳnh Nguyễn Tường Vy</span></li>
+                <li class="roster-item"><span class="roster-index">38</span><span class="roster-name">Phạm Ngọc Yến</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Album Ảnh -->
+    <section id="gallery">
+        <div class="section-title">
+            <h2>📸 Album Khoảnh Khắc Thanh Xuân</h2>
+            <p>Nhấn vào từng hình ảnh để xem chi tiết trải nghiệm</p>
+        </div>
+
+        <div class="timeline-grid">
+            <div class="memory-card" onclick="openLightbox('anh1.jpg', 'Hội Xuân Rực Rỡ — Ngày hội ngập tràn sắc xuân, tiếng cười và sự đoàn kết của tập thể lớp.')">
+                <div class="card-img-wrap"><img src="anh1.jpg" alt="Hội xuân" class="card-img"></div>
+                <div class="card-content">
+                    <span class="card-tag">🎪 Sự Kiện</span>
+                    <h3>Hội Xuân</h3>
+                    <p>Cùng nhau trang trí cổng trại, bày biện gian hàng và chia sẻ khoảnh khắc vui tươi ngày Tết.</p>
+                </div>
+            </div>
+
+            <div class="memory-card" onclick="openLightbox('anh2.jpg', 'Buổi Tập Văn Nghệ — Những buổi chiều miệt mài luyện tập chuẩn bị cho tiết mục biểu diễn.')">
+                <div class="card-img-wrap"><img src="anh2.jpg" alt="Buổi tập văn nghệ" class="card-img"></div>
+                <div class="card-content">
+                    <span class="card-tag">🎤 Văn Nghệ</span>
+                    <h3>Buổi Tập Văn Nghệ Sôi Nổi</h3>
+                    <p>Từng bước nhảy, từng lời ca tập thể cùng nhau mài giũa để tỏa sáng trên sân khấu.</p>
+                </div>
+            </div>
+
+            <div class="memory-card" onclick="openLightbox('anh3.jpg', 'Vinh Danh Học Sinh Khá — Ghi nhận sự nỗ lực phấn đấu trong học tập.')">
+                <div class="card-img-wrap"><img src="anh3.jpg" alt="Vinh danh học sinh khá" class="card-img"></div>
+                <div class="card-content">
+                    <span class="card-tag">📚 Học Tập</span>
+                    <h3>Vinh Danh Học Sinh Khá</h3>
+                    <p>Phần thưởng xứng đáng cho những cố gắng bền bỉ suốt học kỳ vừa qua.</p>
+                </div>
+            </div>
+
+            <div class="memory-card" onclick="openLightbox('anh4.jpg', 'Vinh Danh Học Sinh Giỏi — Tự hào những tấm gương xuất sắc của tập thể lớp.')">
+                <div class="card-img-wrap"><img src="anh4.jpg" alt="Vinh danh học sinh giỏi" class="card-img"></div>
+                <div class="card-content">
+                    <span class="card-tag">🏆 Thành Tích</span>
+                    <h3>Vinh Danh Học Sinh Giỏi</h3>
+                    <p>Khẳng định bản lĩnh học tập và tinh thần hiếu học đáng tự hào.</p>
+                </div>
+            </div>
+
+            <div class="memory-card" onclick="openLightbox('anh5.jpg', 'Lễ Tổng Kết Cuối Năm Lớp 10 — Khép lại một năm học nhiều kỷ niệm và trưởng thành.')">
+                <div class="card-img-wrap"><img src="anh5.jpg" alt="Lễ tổng kết cuối năm lớp 10" class="card-img"></div>
+                <div class="card-content">
+                    <span class="card-tag">🎓 Tổng Kết</span>
+                    <h3>Lễ Tổng Kết Cuối Năm Lớp 10</h3>
+                    <p>Những cái ôm lưu luyến, tiếng cười pha lẫn nước mắt trong ngày khép lại năm học đầu tiên cấp 3.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hộp Phóng To Ảnh (Lightbox) -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>
+        <img id="lightboxImg" src="" alt="Phóng to">
+        <div class="lightbox-text" id="lightboxText"></div>
+    </div>
+
+    <!-- Chân Trang -->
+    <footer>
+        <p>© 2026 — Lớp học thân yêu — GVCN: Cô Hồ Thị Hồng Thủy <span>♥</span></p>
+    </footer>
+
+    <script>
+        function openLightbox(imgSrc, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxText = document.getElementById('lightboxText');
+
+            lightboxImg.src = imgSrc;
+            lightboxText.textContent = caption;
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox(e) {
+            if (e.target.id === 'lightbox' || e.target.classList.contains('close-lightbox')) {
+                document.getElementById('lightbox').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
